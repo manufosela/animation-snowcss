@@ -1,9 +1,9 @@
 {
   "name": "animation-snowcss",
   "description": "Webcomponent animation-snowcss following open-wc recommendations",
-  "license": "MIT",
-  "author": "animation-snowcss",
-  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "author": "manufosela",
+  "version": "1.0.0",
   "main": "index.js",
   "module": "AnimationSnowcss.js",
   "type": "module",
