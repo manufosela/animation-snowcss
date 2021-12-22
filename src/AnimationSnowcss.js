@@ -10,6 +10,10 @@ export class AnimationSnowcss extends LitElement {
         background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         overflow: hidden;
         filter: drop-shadow(0 0 10px white);
+        z-index:-1;
+        position:fixed;
+        top: 0;
+        left:0;
       }
 
       .snowflake {
@@ -24,18 +28,32 @@ export class AnimationSnowcss extends LitElement {
 
   static get properties() {
     return {
+      numSnowFlakes: { type: Number, attribute: 'num-snowflakes' }, 
+      speed: { type: Number },
       stylesSnow: { type: String },
-      numSnowFlakes: { type: Number }, 
       snowflakes: { type: Array }    
     };
   }
 
   constructor() {
     super();
+    this.timebase = 60;
     this.numSnowFlakes = 200;
+    this.speed = 2;
+    this.seconds = 30; 
+    this.minorSeconds = this.seconds / 3;
     this.snowflakes = new Array(this.numSnowFlakes);
     this.snowflakes.fill('');
     this.stylesSnow = '';
+  }
+
+  initializeValues() {
+    this.snowflakes = new Array(this.numSnowFlakes);
+    this.snowflakes.fill('');
+    this.speed = (this.speed <= 0) ? 1 : this.speed;
+    this.speed = (this.speed > 10) ? 10 : this.speed;
+    this.seconds = parseInt(this.timebase / this.speed, 10); // speed 1 = 60s, 2 = 30s, 3 = 20s, 4 = 15s, 5 = 12s, 6 = 10s, 7 = 8s, 8 = 6s, 9 = 5s, 10 = 4s
+    this.minorSeconds = this.seconds / 3;
   }
 
   firstUpdated() {
@@ -44,6 +62,7 @@ export class AnimationSnowcss extends LitElement {
       const randomRangeVal = min + Math.floor(rand * ((max - min) + 1));
       return randomRangeVal;
     }
+    this.initializeValues();
     this.stylesSnow = this.snowflakes.map((el, idx) => {
       const index = idx + 1;
       const randomX = `${parseInt(Math.random() * 1000000, 10) * 0.0001}`;
@@ -53,8 +72,8 @@ export class AnimationSnowcss extends LitElement {
       const randomYoyoTime = randomRange(30000, 80000) / 100000;
       const randomYoyoY = `${randomYoyoTime * 100}vh`;
       const randomScale = `${parseInt(Math.random() * 10000, 10) * 0.0001}`;
-      const fallDuration = `${randomRange(10, 30)}s`;
-      const fallDelay = `-${parseInt(Math.random() * 3000, 10)/ 100}s`;
+      const fallDuration = `${randomRange(this.minorSeconds, this.seconds)}s`;
+      const fallDelay = `-${parseInt(Math.random() * this.seconds * 100, 10)/ 100}s`;
 
       const output = `
         .snowflake:nth-child(${index+1}) {

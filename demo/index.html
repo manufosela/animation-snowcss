@@ -2,23 +2,19 @@
 <html lang="en-GB">
   <head>
     <meta charset="utf-8" />
-    <style>
-      body {
-        background: #fafafa;
-      }
-    </style>
+    <script type="module">
+      import '../animation-snowcss.js';
+    </script>
   </head>
   <body>
-    <div id="demo"></div>
-
-    <script type="module">
-      import { html, render } from 'lit';
-      import '../animation-snowcss.js';
-
-      render(
-        html` <animation-snowcss num-snowflakes="200"></animation-snowcss> `,
-        document.querySelector('#demo')
-      );
-    </script>
+    <main style="color: white">
+      <h1>DEMO SNOW CSS WEB-COMPONENT</h1>
+      <code style="font-size: 28px">
+        <pre id="wccode">
+          &lt;animation-snowcss num-snowflakes="200" speed="5"&gt;&lt;/animation-snowcss&gt;
+        </pre>
+      </code>
+    </main>
+    <animation-snowcss num-snowflakes="200" speed="5"></animation-snowcss>
   </body>
 </html>
