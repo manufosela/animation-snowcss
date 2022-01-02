@@ -15,8 +15,12 @@ npm i animation-snowcss
   import 'animation-snowcss/animation-snowcss.js';
 </script>
 
-<animation-snowcss></animation-snowcss>
+<animation-snowcss num-snowflakes="200" speed="5"></animation-snowcss>
 ```
+
+## Styling
+
+- **--animation-snowcss-background-color**: Background color of the snowflakes. Default: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
 
 ## Linting and formatting
 
@@ -59,7 +63,6 @@ To build a production version of Storybook, run
 ```bash
 npm run storybook:build
 ```
-
 
 ## Tooling configs
 

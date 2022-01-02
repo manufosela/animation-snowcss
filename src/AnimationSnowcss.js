@@ -7,7 +7,7 @@ export class AnimationSnowcss extends LitElement {
         display: block;
         width: 100vw;
         height: 100vh;
-        background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        background: var(--animation-snowcss-background-color, radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%));
         overflow: hidden;
         filter: drop-shadow(0 0 10px white);
         z-index:-1;
